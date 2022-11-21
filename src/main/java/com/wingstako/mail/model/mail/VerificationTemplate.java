@@ -1,6 +1,15 @@
 package com.wingstako.mail.model.mail;
 
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Builder
 public class VerificationTemplate extends FreeMarkerTemplate {
+
+    private String code;
 
     @Override
     public String getTemplateName() {

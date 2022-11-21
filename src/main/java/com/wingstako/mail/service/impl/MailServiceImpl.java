@@ -1,6 +1,7 @@
 package com.wingstako.mail.service.impl;
 
 import com.wingstako.mail.model.mail.FreeMarkerTemplate;
+import com.wingstako.mail.model.mail.VerificationTemplate;
 import com.wingstako.mail.service.MailService;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -62,6 +63,23 @@ public class MailServiceImpl implements MailService {
         helper.setTo(recipientEmailAddresses);
         helper.setText(htmlContent, true);
         mailSender.send(mimeMessage);
+    }
+
+    public void sendVerificationEmail(String subject, String code, String... recipientEmailAddresses)
+            throws IOException, TemplateException, MessagingException {
+
+        VerificationTemplate verificationTemplate = VerificationTemplate.builder()
+                .code(code)
+                .build();
+
+        StringWriter stringWriter = new StringWriter();
+        Map<String, Object> model = new HashMap<>();
+        model.put("verification", verificationTemplate);
+        configuration.getTemplate("verification.ftl").process(model, stringWriter);
+
+        String templatedContent = stringWriter.getBuffer().toString();
+
+        this.sendHtmlEmail(subject, templatedContent, recipientEmailAddresses);
     }
 
     public void sendTemplateEmail(FreeMarkerTemplate template, String... recipientEmailAddresses) throws MessagingException, IOException, TemplateException {
