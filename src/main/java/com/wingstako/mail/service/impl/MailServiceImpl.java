@@ -32,16 +32,7 @@ public class MailServiceImpl implements MailService {
 
     @PostConstruct
     public void testSend() throws MessagingException, IOException, TemplateException {
-
         this.sendPlainTextEmail("This is subject", "Hello World", "test-receiver-3029@email.com");
-//        GreetingTemplate greetingTemplate = new GreetingTemplate();
-//        greetingTemplate.setUsername("wingstako");
-//
-//        try  {
-//            this.sendTemplateEmail(greetingTemplate, "test-receiver-3029@email.com");
-//        } catch (Exception e) {
-//            System.out.println(e.getLocalizedMessage());
-//        }
     }
 
     @Override

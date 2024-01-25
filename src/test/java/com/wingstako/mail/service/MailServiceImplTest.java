@@ -23,32 +23,31 @@ public class MailServiceImplTest {
 
     @Test
     public void testSendPlainTextEmail() {
-
         String subject = "[Test] Plain Text";
         String content = "This is a plain text email";
         String recipient = "test-receiver-3029@email.com";
 
         mailService.sendPlainTextEmail(subject, content, recipient);
+        System.out.println("Plain Text Email Sent!");
     }
 
     @Test
     public void testSendHtmlEmail() throws MessagingException {
-
         String subject = "[Test] HTML";
         String content = "<h1>This is a HTML email</h1>";
         String recipient = "test-receiver-3029@email.com";
 
         mailService.sendHtmlEmail(subject, content, recipient);
+        System.out.println("Html Email Sent!");
     }
 
     @Test
     public void testSendTemplatedVerificationEmail() throws MessagingException, TemplateException, IOException {
-
         String subject = "[Test] Templated";
         String code = "123456";
         String recipient = "test-receiver-3029@email.com";
 
         this.mailService.sendVerificationEmail(subject, code, recipient);
+        System.out.println("Templated Email Sent!");
     }
-
 }
